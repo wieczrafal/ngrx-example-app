@@ -1,9 +1,11 @@
+import { RemoveAuthorAction } from './../actions/author';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import * as fromRoot from '../reducers';
 import * as collection from '../actions/collection';
+import * as author from '../actions/author';
 import { Book } from '../models/book';
 
 
@@ -15,7 +17,9 @@ import { Book } from '../models/book';
       [book]="book$ | async"
       [inCollection]="isSelectedBookInCollection$ | async"
       (add)="addToCollection($event)"
-      (remove)="removeFromCollection($event)">
+      (remove)="removeFromCollection($event)"
+      (addAuthor)="addToAuthorCollection($event)"
+      (removeAuthor)="removeFromAuthorCollection($event)">
     </bc-book-detail>
   `
 })
@@ -34,5 +38,13 @@ export class SelectedBookPageComponent {
 
   removeFromCollection(book: Book) {
     this.store.dispatch(new collection.RemoveBookAction(book));
+  }
+
+  addToAuthorCollection(auth: string) {
+    this.store.dispatch(new author.AddAuthorAction(auth));
+  }
+
+  removeFromAuthorCollection(auth: string) {
+    this.store.dispatch(new author.RemoveAuthorAction(auth));
   }
 }

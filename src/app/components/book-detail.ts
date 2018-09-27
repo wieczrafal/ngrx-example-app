@@ -15,7 +15,7 @@ import { Book } from '../models/book';
         <p [innerHtml]="description"></p>
       </md-card-content>
       <md-card-footer class="footer">
-        <bc-book-authors [book]="book"></bc-book-authors>
+        <bc-book-authors (addAuthor)="addAuthor.emit($event)" (removeAuthor)="removeAuthor.emit($event)" [book]="book"></bc-book-authors>
       </md-card-footer>
       <md-card-actions align="start">
         <button md-raised-button color="warn" *ngIf="inCollection" (click)="remove.emit(book)">
@@ -71,6 +71,8 @@ export class BookDetailComponent {
   @Input() inCollection: boolean;
   @Output() add = new EventEmitter<Book>();
   @Output() remove = new EventEmitter<Book>();
+  @Output() addAuthor = new EventEmitter<string>();
+  @Output() removeAuthor = new EventEmitter<string>();
 
 
   /**

@@ -1,4 +1,9 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
 
 import { Book } from '../models/book';
 
@@ -10,6 +15,7 @@ import { Book } from '../models/book';
     <span>
       {{ authors | bcAddCommas }}
     </span>
+    <md-icon (click)="toggleFavoriteAuthor()">star_border</md-icon>
   `,
   styles: [`
     h5 {
@@ -19,8 +25,14 @@ import { Book } from '../models/book';
 })
 export class BookAuthorsComponent {
   @Input() book: Book;
+  @Output() addAuthor = new EventEmitter<string>();
+  @Output() removeAuthor = new EventEmitter<string>();
 
   get authors() {
     return this.book.volumeInfo.authors;
+  }
+
+  public toggleFavoriteAuthor(): void {
+    this.addAuthor.emit(this.authors[0]);
   }
 }

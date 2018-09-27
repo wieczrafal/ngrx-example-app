@@ -1,35 +1,31 @@
-import { NgModule, } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { MaterialModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
 import { DBModule } from '@ngrx/db';
+import { EffectsModule } from '@ngrx/effects';
 import { RouterStoreModule } from '@ngrx/router-store';
+import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { MaterialModule } from '@angular/material';
 
 import { ComponentsModule } from './components';
+import { AppComponent } from './containers/app';
+import { CollectionPageComponent } from './containers/collection-page';
+import { FavoriteAuthorsComponent } from './containers/favorite-authors-page';
+import { FindBookPageComponent } from './containers/find-book-page';
+import { NotFoundPageComponent } from './containers/not-found-page';
+import { SelectedBookPageComponent } from './containers/selected-book-page';
+import { ViewBookPageComponent } from './containers/view-book-page';
+import { schema } from './db';
+import { AuthorEffects } from './effects/author';
 import { BookEffects } from './effects/book';
 import { CollectionEffects } from './effects/collection';
 import { BookExistsGuard } from './guards/book-exists';
-
-import { AppComponent } from './containers/app';
-import { FindBookPageComponent } from './containers/find-book-page';
-import { ViewBookPageComponent } from './containers/view-book-page';
-import { SelectedBookPageComponent } from './containers/selected-book-page';
-import { CollectionPageComponent } from './containers/collection-page';
-import { NotFoundPageComponent } from './containers/not-found-page';
-
-import { GoogleBooksService } from './services/google-books';
-
-import { routes } from './routes';
 import { reducer } from './reducers';
-import { schema } from './db';
-
-
+import { routes } from './routes';
+import { GoogleBooksService } from './services/google-books';
 
 @NgModule({
   imports: [
@@ -75,6 +71,7 @@ import { schema } from './db';
      */
     EffectsModule.run(BookEffects),
     EffectsModule.run(CollectionEffects),
+    EffectsModule.run(AuthorEffects),
 
     /**
      * `provideDB` sets up @ngrx/db with the provided schema and makes the Database
@@ -84,6 +81,7 @@ import { schema } from './db';
   ],
   declarations: [
     AppComponent,
+    FavoriteAuthorsComponent,
     FindBookPageComponent,
     SelectedBookPageComponent,
     ViewBookPageComponent,

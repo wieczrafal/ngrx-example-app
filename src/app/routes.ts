@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
 
-import { BookExistsGuard } from './guards/book-exists';
-import { FindBookPageComponent } from './containers/find-book-page';
-import { ViewBookPageComponent } from './containers/view-book-page';
 import { CollectionPageComponent } from './containers/collection-page';
+import { FavoriteAuthorsComponent } from './containers/favorite-authors-page';
+import { FindBookPageComponent } from './containers/find-book-page';
 import { NotFoundPageComponent } from './containers/not-found-page';
+import { ViewBookPageComponent } from './containers/view-book-page';
+import { BookExistsGuard } from './guards/book-exists';
 
 export const routes: Routes = [
   {
@@ -19,6 +20,10 @@ export const routes: Routes = [
     path: 'book/:id',
     canActivate: [ BookExistsGuard ],
     component: ViewBookPageComponent
+  },
+  {
+    path: 'favoriteAuthors',
+    component: FavoriteAuthorsComponent
   },
   {
     path: '**',

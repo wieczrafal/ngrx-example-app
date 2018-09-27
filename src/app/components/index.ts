@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '@angular/material';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 
+import { PipesModule } from '../pipes';
+import { AuthorListComponent } from './author-list';
 import { BookAuthorsComponent } from './book-authors';
 import { BookDetailComponent } from './book-detail';
 import { BookPreviewComponent } from './book-preview';
@@ -14,10 +16,9 @@ import { NavItemComponent } from './nav-item';
 import { SidenavComponent } from './sidenav';
 import { ToolbarComponent } from './toolbar';
 
-import { PipesModule } from '../pipes';
-
 
 export const COMPONENTS = [
+  AuthorListComponent,
   BookAuthorsComponent,
   BookDetailComponent,
   BookPreviewComponent,

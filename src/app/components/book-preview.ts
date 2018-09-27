@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { Book } from '../models/book';
 
 
@@ -16,7 +17,7 @@ import { Book } from '../models/book';
           <p *ngIf="description">{{ description | bcEllipsis }}</p>
         </md-card-content>
         <md-card-footer>
-          <bc-book-authors [book]="book"></bc-book-authors>
+          <bc-book-authors (addAuthor)="addAuthor.emit($event)" (removeAuthor)="removeAuthor.emit($event)" [book]="book"></bc-book-authors>
         </md-card-footer>
       </md-card>
     </a>
@@ -65,6 +66,8 @@ import { Book } from '../models/book';
 })
 export class BookPreviewComponent {
   @Input() book: Book;
+  @Output() addAuthor = new EventEmitter<string>();
+  @Output() removeAuthor = new EventEmitter<string>();
 
   get id() {
     return this.book.id;

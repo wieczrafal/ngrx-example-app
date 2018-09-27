@@ -38,6 +38,7 @@ import { combineReducers } from '@ngrx/store';
  * notation packages up all of the exports into a single object.
  */
 import * as fromSearch from './search';
+import * as fromAuthor from './author';
 import * as fromBooks from './books';
 import * as fromCollection from './collection';
 import * as fromLayout from './layout';
@@ -49,6 +50,7 @@ import * as fromLayout from './layout';
  */
 export interface State {
   search: fromSearch.State;
+  author: fromAuthor.State;
   books: fromBooks.State;
   collection: fromCollection.State;
   layout: fromLayout.State;
@@ -65,6 +67,7 @@ export interface State {
  */
 const reducers = {
   search: fromSearch.reducer,
+  author: fromAuthor.reducer,
   books: fromBooks.reducer,
   collection: fromCollection.reducer,
   layout: fromLayout.reducer,
@@ -157,3 +160,18 @@ export const isSelectedBookInCollection = createSelector(getCollectionBookIds, g
 export const getLayoutState = (state: State) => state.layout;
 
 export const getShowSidenav = createSelector(getLayoutState, fromLayout.getShowSidenav);
+
+/**
+ * Author Reducers
+ */
+export const getAuthorState = (state: State) => state.author;
+
+export const getAuthorLoaded = createSelector(getAuthorState, fromAuthor.getLoaded);
+export const getAuthorLoading = createSelector(getAuthorState, fromAuthor.getLoading);
+export const getAuthors = createSelector(getAuthorState, fromAuthor.getAuthors);
+
+
+
+// export const isAuthorInCollection = createSelector(getAuthors, getSelectedBookId, (ids, selected) => {
+//   return ids.indexOf(selected) > -1;
+// });
