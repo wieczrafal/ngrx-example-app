@@ -12,9 +12,7 @@ import { Book } from '../models/book';
   selector: 'bc-book-authors',
   template: `
     <h5 md-subheader>Written By:</h5>
-    <span>
-      {{ authors | bcAddCommas }}
-    </span>
+    <span>{{authors | bcAddCommas}}</span>
     <md-icon (click)="toggleFavoriteAuthor()">star_border</md-icon>
   `,
   styles: [`

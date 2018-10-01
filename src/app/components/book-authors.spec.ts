@@ -1,5 +1,6 @@
 import {
     Component,
+    CUSTOM_ELEMENTS_SCHEMA,
     DebugElement,
     ViewChild
 } from '@angular/core';
@@ -31,6 +32,7 @@ describe('BookAuthorsComponent', () => {
     beforeEach(async(() => {
 
         TestBed.configureTestingModule({
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
             imports: [
                 PipesModule
             ],
