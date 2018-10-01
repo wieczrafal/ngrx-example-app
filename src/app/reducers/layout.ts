@@ -5,7 +5,7 @@ export interface State {
   showSidenav: boolean;
 }
 
-const initialState: State = {
+export const initialState: State = {
   showSidenav: false,
 };
 

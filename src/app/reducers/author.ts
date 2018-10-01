@@ -7,7 +7,7 @@ export interface State {
     authors: string[];
 };
 
-const initialState: State = {
+export const initialState: State = {
     loaded: false,
     loading: false,
     authors: []
@@ -44,15 +44,15 @@ export function reducer(state = initialState, action: author.Actions): State {
             };
         }
 
-    case author.REMOVE_AUTHOR_SUCCESS:
-    case author.ADD_AUTHOR_FAIL: {
-        const author = action.payload;
+        case author.REMOVE_AUTHOR_SUCCESS:
+        case author.ADD_AUTHOR_FAIL: {
+            const author = action.payload;
 
-        return {
-            ...state,
-            authors: state.authors.filter(auth => auth !== author)
-        };
-    }
+            return {
+                ...state,
+                authors: state.authors.filter(auth => auth !== author)
+            };
+        }
 
         default: {
             return state;
